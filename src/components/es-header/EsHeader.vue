@@ -1,11 +1,49 @@
 <template>
-  <div>EsHeader 组件</div>
+  <div
+    class="header-container"
+    :style="{ color: color, backgroundColor: bgcolor, fontSize: fsize + 'px' }"
+  >
+    {{ title }}
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'EsHeader'
+  name: 'EsHeader',
+  props: {
+    title: {
+      // 标题内容
+      type: String,
+      default: 'es-header'
+    },
+    bgcolor: {
+      // 背景颜色
+      type: String,
+      default: '#007BFF'
+    },
+    color: {
+      // 文字颜色
+      type: String,
+      default: '#ffffff'
+    },
+    fsize: {
+      // 文字大小
+      type: Number,
+      default: 12
+    }
+  }
 }
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.header-container {
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+}
+</style>
