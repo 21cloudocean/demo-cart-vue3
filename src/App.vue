@@ -6,7 +6,7 @@
     <!-- 为 es-header 组件指定 title 属性的值 -->
     <EsHeader title="购物车案例"></EsHeader>
     <!-- 使用 es-footer 组件 -->
-    <EsFooter></EsFooter>
+    <EsFooter :total="0" :amount="0" @fullChange="onFullStateChange"></EsFooter>
   </div>
 </template>
 
@@ -38,6 +38,11 @@ export default {
       if (res.status !== 200) return alert('请求商品列表数据失败！')
       // 3. 将请求到的数据存储到 data 中，供页面渲染期间使用
       this.goodslist = res.list
+    },
+    // 监听全选按钮状态的变化
+    onFullStateChange(isFull) {
+      // 打印全选按钮最新的选中状态
+      console.log(isFull)
     }
   },
 

@@ -1,3 +1,7 @@
 :root{
   font-size: 12px;
 }
+/* 覆盖全选按钮的圆角样式 */
+.custom-checkbox .custom-control-label::before {
+  border-radius: 10px;
+}
