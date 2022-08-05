@@ -4,11 +4,16 @@
     <div class="left">
       <!-- 复选框 -->
       <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" :id="id" />
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          :id="id"
+          :checked="checked"
+        />
         <!-- 将商品图片包裹于 label 之中，点击图片可以切换“复选框”的选
 中状态 -->
         <label class="custom-control-label" :for="id">
-          <img src="" alt="商品图片" class="thumb" />
+          <img :src="thumb" alt="商品图片" class="thumb" />
         </label>
       </div>
       <!-- <img src="" alt="商品图片" class="thumb" /> -->
@@ -17,12 +22,12 @@
     <!-- 右侧信息区域 -->
     <div class="right">
       <!-- 商品名称 -->
-      <div class="top">xxxx</div>
+      <div class="top">>{{ title }}</div>
       <div class="bottom">
         <!-- 商品价格 -->
-        <div class="price">￥0.00</div>
+        <div class="price">￥{{ price.toFixed(2) }}</div>
         <!-- 商品数量 -->
-        <div class="count">数量</div>
+        <div class="count">数量：{{ count }}</div>
       </div>
     </div>
   </div>
@@ -34,6 +39,28 @@ export default {
     // 唯一的 key 值
     id: {
       type: [String, Number], // id 的值可以是“字符串”也可以是“数值”
+      required: true
+    },
+    // 1. 商品的缩略图
+    thumb: {
+      type: String,
+      required: true
+    },
+    // 2. 商品的名称
+    title: {
+      type: String,
+      required: true
+    },
+    // 3. 单价
+    price: { type: Number, required: true },
+    // 4. 数量
+    count: {
+      type: Number,
+      required: true
+    },
+    // 5. 商品的勾选状态
+    checked: {
+      type: Boolean,
       required: true
     }
   }
