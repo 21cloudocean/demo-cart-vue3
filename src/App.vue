@@ -6,7 +6,7 @@
     <!-- 为 es-header 组件指定 title 属性的值 -->
     <EsHeader title="购物车案例"></EsHeader>
     <!-- 使用 goods 组件 -->
-    <EsGoods v-for="item in goodslist" :key="item.id"></EsGoods>
+    <EsGoods v-for="item in goodslist" :key="item.id" :id="item.id"></EsGoods>
     <!-- 使用 es-footer 组件 -->
     <EsFooter :total="0" :amount="0" @fullChange="onFullStateChange"></EsFooter>
   </div>

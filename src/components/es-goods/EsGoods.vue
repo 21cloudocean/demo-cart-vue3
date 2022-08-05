@@ -4,10 +4,10 @@
     <div class="left">
       <!-- 复选框 -->
       <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="customCheck1" />
+        <input type="checkbox" class="custom-control-input" :id="id" />
         <!-- 将商品图片包裹于 label 之中，点击图片可以切换“复选框”的选
 中状态 -->
-        <label class="custom-control-label" for="customCheck1">
+        <label class="custom-control-label" :for="id">
           <img src="" alt="商品图片" class="thumb" />
         </label>
       </div>
@@ -29,7 +29,14 @@
 </template>
 <script>
 export default {
-  name: 'EsGoods'
+  name: 'EsGoods',
+  props: {
+    // 唯一的 key 值
+    id: {
+      type: [String, Number], // id 的值可以是“字符串”也可以是“数值”
+      required: true
+    }
+  }
 }
 </script>
 <style lang="less" scoped>
