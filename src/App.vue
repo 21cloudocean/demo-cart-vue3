@@ -15,6 +15,7 @@
       :price="item.goods_price"
       :count="item.goods_count"
       :checked="item.goods_state"
+      @stateChange="onGoodsStateChange"
     ></EsGoods>
     <!-- 使用 es-footer 组件 -->
     <EsFooter :total="0" :amount="0" @fullChange="onFullStateChange"></EsFooter>
@@ -59,6 +60,15 @@ export default {
     onFullStateChange(isFull) {
       // 打印全选按钮最新的选中状态
       console.log(isFull)
+    },
+    // 监听商品选中状态变化的事件
+    onGoodsStateChange(e) {
+      // 1. 根据 id 进行查找（注意：e 是一个对象，包含了 id 和 value两个属性）
+      const findResult = this.goodslist.find((x) => x.id === e.id)
+      // 2. 找到了对应的商品，则更新其选中状态
+      if (findResult) {
+        findResult.goods_state = e.value
+      }
     }
   },
 

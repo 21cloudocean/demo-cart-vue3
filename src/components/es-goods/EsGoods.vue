@@ -9,6 +9,7 @@
           class="custom-control-input"
           :id="id"
           :checked="checked"
+          @change="onCheckBoxChange"
         />
         <!-- 将商品图片包裹于 label 之中，点击图片可以切换“复选框”的选
 中状态 -->
@@ -62,6 +63,20 @@ export default {
     checked: {
       type: Boolean,
       required: true
+    }
+  },
+  emits: ['stateChange'],
+
+  methods: {
+    // 监听复选框选中状态变化的事件
+    onCheckBoxChange(e) {
+      // e.target.checked 是最新的勾选状态
+      // console.log(e.target.checked)
+      // 向外发送的数据是一个对象，包含了 { id, value } 两个属性
+      this.$emit('stateChange', {
+        id: this.id,
+        value: e.target.checked
+      })
     }
   }
 }
