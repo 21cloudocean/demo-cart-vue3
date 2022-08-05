@@ -18,7 +18,11 @@
       @stateChange="onGoodsStateChange"
     ></EsGoods>
     <!-- 使用 es-footer 组件 -->
-    <EsFooter :total="0" :amount="0" @fullChange="onFullStateChange"></EsFooter>
+    <EsFooter
+      :total="total"
+      :amount="amount"
+      @fullChange="onFullStateChange"
+    ></EsFooter>
   </div>
 </template>
 
@@ -71,7 +75,32 @@ export default {
       }
     }
   },
-
+  computed: {
+    // 已勾选商品的总价
+    amount() {
+      // 1. 定义商品总价格
+      let a = 0
+      // 2. 循环累加商品总价格
+      this.goodslist
+        .filter((x) => x.goods_state)
+        .forEach((x) => {
+          a += x.goods_price * x.goods_count
+        })
+      // 3. 返回累加的结果
+      return a
+    },
+    // 已勾选商品的总数量
+    total() {
+      // 1. 定义已勾选的商品总数量
+      let t = 0
+      // 2. 循环累加
+      this.goodslist
+        .filter((x) => x.goods_state)
+        .forEach((x) => (t += x.goods_count))
+      // 3. 返回计算的结果
+      return t
+    }
+  },
   // 组件实例创建完毕之后的生命周期函数
   created() {
     // 调用 methods 中的 getGoodsList 方法，请求商品列表的数据
