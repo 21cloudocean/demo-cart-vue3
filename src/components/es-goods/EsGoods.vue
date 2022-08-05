@@ -28,14 +28,24 @@
         <!-- 商品价格 -->
         <div class="price">￥{{ price.toFixed(2) }}</div>
         <!-- 商品数量 -->
-        <div class="count">数量：{{ count }}</div>
+        <div class="count">
+          <!-- 使用 es-counter 组件 -->
+          <EsCounter :num="count" :min="1" @numChange="getNumber"></EsCounter>
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+// 导入 counter 组件
+import EsCounter from '../es-counter/EsCounter.vue'
 export default {
   name: 'EsGoods',
+  components: {
+    // 注册 counter 组件
+    EsCounter
+  },
+
   props: {
     // 唯一的 key 值
     id: {
@@ -65,7 +75,7 @@ export default {
       required: true
     }
   },
-  emits: ['stateChange'],
+  emits: ['stateChange', 'countChange'],
 
   methods: {
     // 监听复选框选中状态变化的事件
@@ -76,6 +86,17 @@ export default {
       this.$emit('stateChange', {
         id: this.id,
         value: e.target.checked
+      })
+    },
+    // 监听数量变化的事件
+    getNumber(num) {
+      // console.log(num)
+      // 触发自定义事件，向外传递数据对象 { id, value }
+      this.$emit('countChange', {
+        // 商品的 id
+        id: this.id,
+        // 最新的数量
+        value: num
       })
     }
   }
