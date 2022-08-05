@@ -5,6 +5,8 @@
     <!-- 使用 es-header 组件 -->
     <!-- 为 es-header 组件指定 title 属性的值 -->
     <EsHeader title="购物车案例"></EsHeader>
+    <!-- 使用 goods 组件 -->
+    <EsGoods v-for="item in goodslist" :key="item.id"></EsGoods>
     <!-- 使用 es-footer 组件 -->
     <EsFooter :total="0" :amount="0" @fullChange="onFullStateChange"></EsFooter>
   </div>
@@ -15,13 +17,18 @@
 import EsHeader from './components/es-header/EsHeader.vue'
 // 导入 footer 组件
 import EsFooter from './components/es-footer/EsFooter.vue'
+// 导入 goods 组件
+import EsGoods from './components/es-goods/EsGoods.vue'
+
 export default {
   name: 'MyApp',
   components: {
     // 注册 header 组件
     EsHeader,
     // 注册 footer 组件
-    EsFooter
+    EsFooter,
+    // 注册 goods 组件
+    EsGoods
   },
   data() {
     return {
